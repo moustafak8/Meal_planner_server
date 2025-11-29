@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('shopping_lists', function (Blueprint $table) {
             $table->id();
             $table->foreignId('household_id')->constrained('households')->onDelete('cascade');
-            $table->foreignId('created_by')->constrained('_users__')->onDelete('cascade');
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->foreignId('meal_plan_id')->constrained('meal_plans')->onDelete('cascade')->nullable();
             $table->string('name');
             $table->integer('cost');

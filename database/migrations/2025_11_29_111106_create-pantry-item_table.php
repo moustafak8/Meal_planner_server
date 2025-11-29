@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('pantry-items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('household_id')->constrained('households')->onDelete('cascade');
-            $table->foreignId('added_by')->constrained('_users__')->onDelete('cascade');
+            $table->foreignId('added_by')->constrained('users')->onDelete('cascade');
             $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
             $table->foreignId('ingredient_id')->constrained('ingredients')->onDelete('cascade');
             $table->string('name');

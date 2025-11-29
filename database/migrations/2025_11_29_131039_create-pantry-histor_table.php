@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pantry-histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pantry_item_id')->constrained('pantry-items')->onDelete('cascade');
-            $table->foreignId('changed_by')->constrained('_users__')->onDelete('cascade');
+            $table->foreignId('changed_by')->constrained('users')->onDelete('cascade');
             $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
             $table->float('quantity_changed');
             $table->string('change_type'); // e.g., 'added', 'removed', 'consumed'
