@@ -10,6 +10,9 @@ use App\Http\Controllers\User\UnitsController;
 use App\Http\Controllers\User\PantryItemsController;  
 use App\Http\Controllers\User\PantryHistoryController; 
 use App\Http\Controllers\User\MealPlansController; 
+use App\Http\Controllers\User\MealPlanEntriesController; 
+use App\Http\Controllers\User\RecipesController;
+use App\Http\Controllers\User\RecipeIngredientsController;
 
 //Authenticated Routes
 Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
@@ -28,6 +31,12 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::post('/add_update_pantry_history/{id?}', [PantryHistoryController::class, "addOrUpdatePantryHistory"]);
         Route::get('/meal_plans/{id?}', [MealPlansController::class, "getAllMealPlans"]);
         Route::post('/add_update_meal_plan/{id?}', [MealPlansController::class, "addOrUpdateMealPlan"]);
+        Route::get('/meal_plan_entries/{id?}', [MealPlanEntriesController::class, "getAllMealPlanEntries"]);
+        Route::post('/add_update_meal_plan_entry/{id?}', [MealPlanEntriesController::class, "addOrUpdateMealPlanEntry"]);
+        Route::get('/recipes/{id?}', [RecipesController::class, "getAllRecipes"]);
+        Route::post('/add_update_recipe/{id?}', [RecipesController::class, "addOrUpdateRecipe"]);
+        Route::get('/recipe_ingredients/{id?}', [RecipeIngredientsController::class, "getAllRecipeIngredients"]);
+        Route::post('/add_update_recipe_ingredient  /{id?}', [RecipeIngredientsController::class, "addOrUpdateRecipeIngredient"]);
     });
 });
 
