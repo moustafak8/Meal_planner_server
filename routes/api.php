@@ -8,6 +8,8 @@ use App\Http\Controllers\User\HouseMembersController;
 use App\Http\Controllers\User\IngredientController;
 use App\Http\Controllers\User\UnitsController;  
 use App\Http\Controllers\User\PantryItemsController;  
+use App\Http\Controllers\User\PantryHistoryController; 
+use App\Http\Controllers\User\MealPlansController; 
 
 //Authenticated Routes
 Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
@@ -22,6 +24,10 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::post('/add_update_unit/{id?}', [UnitsController::class, "addOrUpdateUnit"]);
         Route::get('/pantry_items/{id?}', [PantryItemsController::class, "getAllPantryItems"]);
         Route::post('/add_update_pantry_item/{id?}', [PantryItemsController::class, "addOrUpdatePantryItem"]);
+        Route::get('/pantry_history/{id?}', [PantryHistoryController::class, "getAllPantryHistory"]);
+        Route::post('/add_update_pantry_history/{id?}', [PantryHistoryController::class, "addOrUpdatePantryHistory"]);
+        Route::get('/meal_plans/{id?}', [MealPlansController::class, "getAllMealPlans"]);
+        Route::post('/add_update_meal_plan/{id?}', [MealPlansController::class, "addOrUpdateMealPlan"]);
     });
 });
 
