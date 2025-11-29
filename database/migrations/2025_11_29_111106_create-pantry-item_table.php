@@ -9,10 +9,11 @@ return new class extends Migration
     
     public function up(): void
     {
-        Schema::create('pantry-item', function (Blueprint $table) {
+        Schema::create('pantry-items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('household_id')->constrained('households')->onDelete('cascade');
-            $table->foreignId('unit_id')->constrained('units')->onDelete('cascad');
+            $table->foreignId('added_by')->constrained('_users__')->onDelete('cascade');
+            $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
             $table->foreignId('ingredient_id')->constrained('ingredients')->onDelete('cascade');
             $table->string('name');
             $table->float('quantity');
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('pantry-items');
     }
 };
