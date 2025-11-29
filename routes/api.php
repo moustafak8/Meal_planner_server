@@ -7,6 +7,7 @@ use App\Http\Controllers\User\householdcontroller;
 use App\Http\Controllers\User\HouseMembersController;
 use App\Http\Controllers\User\IngredientController;
 use App\Http\Controllers\User\UnitsController;  
+use App\Http\Controllers\User\PantryItemsController;  
 
 //Authenticated Routes
 Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
@@ -14,11 +15,13 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::get('/household/{id?}', [householdcontroller::class, "getAllhouseholds"]);
         Route::post('/add_update_household/{id?}', [householdcontroller::class, "addOrUpdatehousehold"]);
         Route::get('/members/{id?}', [HouseMembersController::class, "getAllmembers"]);
-        Route::post('/add_update_household/{id?}', [HouseMembersController::class, "addOrUpdatemembers"]);
+        Route::post('/add_update_members/{id?}', [HouseMembersController::class, "addOrUpdatemembers"]);
         Route::get('/ingredients/{id?}', [IngredientController::class, "getAllIngredients"]);
         Route::post('/add_update_ingredient/{id?}', [IngredientController::class, "addOrUpdateIngredient"]);
         Route::post('/unit/{id?}', [UnitsController::class, "getAllUnits"]);
         Route::post('/add_update_unit/{id?}', [UnitsController::class, "addOrUpdateUnit"]);
+        Route::get('/pantry_items/{id?}', [PantryItemsController::class, "getAllPantryItems"]);
+        Route::post('/add_update_pantry_item/{id?}', [PantryItemsController::class, "addOrUpdatePantryItem"]);
     });
 });
 
