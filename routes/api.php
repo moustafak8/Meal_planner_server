@@ -6,13 +6,16 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\householdcontroller;
 use App\Http\Controllers\User\HouseMembersController;
 use App\Http\Controllers\User\IngredientController;
-use App\Http\Controllers\User\UnitsController;  
-use App\Http\Controllers\User\PantryItemsController;  
-use App\Http\Controllers\User\PantryHistoryController; 
-use App\Http\Controllers\User\MealPlansController; 
-use App\Http\Controllers\User\MealPlanEntriesController; 
+use App\Http\Controllers\User\UnitsController;
+use App\Http\Controllers\User\PantryItemsController;
+use App\Http\Controllers\User\PantryHistoryController;
+use App\Http\Controllers\User\MealPlansController;
+use App\Http\Controllers\User\MealPlanEntriesController;
 use App\Http\Controllers\User\RecipesController;
 use App\Http\Controllers\User\RecipeIngredientsController;
+use App\Http\Controllers\User\ShoppingListController;
+use App\Http\Controllers\User\ShoppingListItemsController;
+use App\Http\Controllers\User\ExpensesController;
 
 //Authenticated Routes
 Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
@@ -37,6 +40,12 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::post('/add_update_recipe/{id?}', [RecipesController::class, "addOrUpdateRecipe"]);
         Route::get('/recipe_ingredients/{id?}', [RecipeIngredientsController::class, "getAllRecipeIngredients"]);
         Route::post('/add_update_recipe_ingredient  /{id?}', [RecipeIngredientsController::class, "addOrUpdateRecipeIngredient"]);
+        Route::get('/shopping_lists/{id?}', [ShoppingListController::class, "getAllShoppingLists"]);
+        Route::post('/add_update_shopping_list/{id?}', [ShoppingListController::class, "addOrUpdateShoppingList"]);
+        Route::get('/shopping_list_items/{id?}', [ShoppingListItemsController::class, "getAllShoppingListItems"]);
+        Route::post('/add_update_shopping_list_item/{id?}', [ShoppingListItemsController::class, "addOrUpdateShoppingListItem"]);
+        Route::get('/expenses/{id?}', [ExpensesController::class, "getAllExpenses"]);
+        Route::post('/add_update_expense/{id?}', [ExpensesController::class, "addOrUpdateExpense"]);
     });
 });
 
