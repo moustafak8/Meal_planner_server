@@ -12,12 +12,10 @@ return new class extends Migration
            $table->id();
            $table->foreignId('household_id')->constrained('households')->onDelete('cascade');
            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
-           $table->string('title');
            $table->decimal('amount_spent', 10, 2);
            $table->string('Currency');
            $table->string('category');
            $table->string('notes')->nullable();
-           $table->date('expense_date');
            $table->timestamps();
        });
     }

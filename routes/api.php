@@ -48,8 +48,6 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::post('/add_update_expense/{id?}', [ExpensesController::class, "addOrUpdateExpense"]);
     });
 });
-
-
 Route::post('/login', [AuthController::class, "login"]);
 Route::post('/register', [AuthController::class, "register"]);
 Route::get('/error', [AuthController::class, "displayError"])->name("login");
