@@ -31,8 +31,8 @@ class HouseMembersController extends Controller
 
             // Check if user is already a member
             $existingMember = House_members::where('household_id', $household->id)
-                                           ->where('user_id', $request["userid"])
-                                           ->first();
+                ->where('user_id', $request["userid"])
+                ->first();
             if ($existingMember) {
                 return $this->responseJSON(null, "User is already a member of this household", 400);
             }
@@ -40,7 +40,15 @@ class HouseMembersController extends Controller
             $House_members = new House_members;
             $House_members->household_id = $household->id;
             $House_members->user_id = $request["userid"];
-        } else {
+        }
+        // Find household by user_id 
+        else if ($id == "id") {
+            $House_members = House_members::where('user_id', $request["user_id"])->first();
+            if (!$House_members) {
+                return $this->responseJSON(null, "Member not found", 404);
+            }
+            return $this->responseJSON($House_members);
+        } {
             $House_members = House_members::find($id);
             if (!$House_members) {
                 return $this->responseJSON(null, "failure", 400);

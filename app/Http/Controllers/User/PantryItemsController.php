@@ -34,10 +34,9 @@ class PantryItemsController extends Controller
         $pantry_item->household_id = $request["household_id"];
         $pantry_item->added_by= $request["user_id"];
         $pantry_item->unit_id = $request["unit_id"];
-        $pantry_item->ingredient_id = $request["ingredient_id"];
         $pantry_item->name = $request["name"];
         $pantry_item->quantity = $request["quantity"];
-        $pantry_item->expiration_date = $request["expiration_date"];
+        $pantry_item->expiration_date = $request["expiry_date"];
         $pantry_item->location = $request["location"];
         if ($pantry_item->save()) {
             return $this->responseJSON($pantry_item);
