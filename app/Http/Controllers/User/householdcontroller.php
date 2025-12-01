@@ -5,7 +5,6 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\household;
 use Illuminate\Http\Request;
-
 class householdcontroller extends Controller
 {
     function getAllhouseholds($id = null){
@@ -13,7 +12,7 @@ class householdcontroller extends Controller
             $households = household::all();
             return $this->responseJSON($households);
         }
-
+        
         $household = household::find($id);
         return $this->responseJSON($household);
     }

@@ -33,7 +33,6 @@ class ShoppingListController extends Controller
         $shoppingList->name = $request["name"];
         $shoppingList->cost = $request["cost"];
         $shoppingList->status = $request["status"];
-
         if ($shoppingList->save()) {
             return $this->responseJSON($shoppingList);
         }

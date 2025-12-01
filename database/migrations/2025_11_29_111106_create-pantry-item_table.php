@@ -14,7 +14,6 @@ return new class extends Migration
             $table->foreignId('household_id')->constrained('households')->onDelete('cascade');
             $table->foreignId('added_by')->constrained('users')->onDelete('cascade');
             $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
-            $table->foreignId('ingredient_id')->constrained('ingredients')->onDelete('cascade');
             $table->string('name');
             $table->float('quantity');
             $table->date('expiration_date')->nullable();
