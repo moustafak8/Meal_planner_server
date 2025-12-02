@@ -16,6 +16,7 @@ use App\Http\Controllers\User\RecipeIngredientsController;
 use App\Http\Controllers\User\ShoppingListController;
 use App\Http\Controllers\User\ShoppingListItemsController;
 use App\Http\Controllers\User\ExpensesController;
+use App\Http\Controllers\User\AIController;
 
 //Authenticated Routes
 Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
@@ -47,6 +48,7 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::post('/add_update_shopping_list_item/{id?}', [ShoppingListItemsController::class, "addOrUpdateShoppingListItem"]);
         Route::get('/expenses/{id?}', [ExpensesController::class, "getAllExpenses"]);
         Route::post('/add_update_expense/{id?}', [ExpensesController::class, "addOrUpdateExpense"]);
+        Route::post('/ai_suggestions', [AIController::class, "suggestion"]);
     });
 });
 Route::post('/login', [AuthController::class, "login"]);
