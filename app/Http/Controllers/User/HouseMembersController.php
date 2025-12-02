@@ -43,7 +43,7 @@ class HouseMembersController extends Controller
         }
         // Find household by user_id 
         else if ($id == "id") {
-            $House_members = House_members::where('user_id', $request["user_id"])->first();
+            $House_members = House_members::where('user_id', $request["userid"])->first();
             if (!$House_members) {
                 return $this->responseJSON(null, "Member not found", 404);
             }

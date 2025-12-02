@@ -16,6 +16,7 @@ use App\Http\Controllers\User\RecipeIngredientsController;
 use App\Http\Controllers\User\ShoppingListController;
 use App\Http\Controllers\User\ShoppingListItemsController;
 use App\Http\Controllers\User\ExpensesController;
+use App\Http\Controllers\User\AIController;
 
 //Authenticated Routes
 Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
@@ -30,6 +31,7 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::post('/add_update_unit/{id?}', [UnitsController::class, "addOrUpdateUnit"]);
         Route::get('/pantry_items/{id?}', [PantryItemsController::class, "getAllPantryItems"]);
         Route::post('/add_update_pantry_item/{id?}', [PantryItemsController::class, "addOrUpdatePantryItem"]);
+        Route::post('/consume_pantry_item/{id}', [PantryItemsController::class, "consumePantryItem"]);
         Route::get('/pantry_history/{id?}', [PantryHistoryController::class, "getAllPantryHistory"]);
         Route::post('/add_update_pantry_history/{id?}', [PantryHistoryController::class, "addOrUpdatePantryHistory"]);
         Route::get('/meal_plans/{id?}', [MealPlansController::class, "getAllMealPlans"]);
@@ -38,6 +40,7 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::post('/add_update_meal_plan_entry/{id?}', [MealPlanEntriesController::class, "addOrUpdateMealPlanEntry"]);
         Route::get('/recipes/{id?}', [RecipesController::class, "getAllRecipes"]);
         Route::post('/add_update_recipe/{id?}', [RecipesController::class, "addOrUpdateRecipe"]);
+        Route::post('/add_recipes_from_ai', [RecipesController::class, "addRecipesFromAI"]);
         Route::get('/recipe_ingredients/{id?}', [RecipeIngredientsController::class, "getAllRecipeIngredients"]);
         Route::post('/add_update_recipe_ingredient  /{id?}', [RecipeIngredientsController::class, "addOrUpdateRecipeIngredient"]);
         Route::get('/shopping_lists/{id?}', [ShoppingListController::class, "getAllShoppingLists"]);
@@ -46,6 +49,7 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::post('/add_update_shopping_list_item/{id?}', [ShoppingListItemsController::class, "addOrUpdateShoppingListItem"]);
         Route::get('/expenses/{id?}', [ExpensesController::class, "getAllExpenses"]);
         Route::post('/add_update_expense/{id?}', [ExpensesController::class, "addOrUpdateExpense"]);
+        Route::post('/ai_suggestions/{id?}', [AIController::class, "suggestion"]);
     });
 });
 Route::post('/login', [AuthController::class, "login"]);

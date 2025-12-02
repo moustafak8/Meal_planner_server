@@ -6,6 +6,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 
 use App\Models\pantry_items;
+use App\Services\PantryItemService;
 use Illuminate\Http\Request;
 
 class PantryItemsController extends Controller
@@ -17,7 +18,7 @@ class PantryItemsController extends Controller
             return $this->responseJSON($pantry_items);
         }
 
-        $pantry_item = pantry_items::find($id);
+        $pantry_item = pantry_items::where('household_id', $id)->get();
         return $this->responseJSON($pantry_item);
     }
 
@@ -43,5 +44,17 @@ class PantryItemsController extends Controller
         }
 
         return $this->responseJSON(null, "failure", 400);
+    }
+
+    function consumePantryItem(Request $request, $id)
+    {
+        $service = new PantryItemService();
+        $result = $service->consumePantryItem($id, $request->quantity_consumed, $request->user_id, $request->reason);
+
+        if ($result['success']) {
+            return $this->responseJSON($result['data'], $result['message'], $result['status']);
+        } else {
+            return $this->responseJSON(null, $result['message'], $result['status']);
+        }
     }
 }

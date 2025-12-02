@@ -6,6 +6,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 
 use App\Models\recipes;
+use App\Services\Recipe_service;
 use Illuminate\Http\Request;
 
 class RecipesController extends Controller
@@ -38,5 +39,11 @@ class RecipesController extends Controller
          }
 
          return $this->responseJSON(null, "failure", 400);
+     }
+
+     function addRecipesFromAI(Request $request){
+         $recipeService = new Recipe_service();
+         $result = $recipeService->addrecipe($request);
+         return $this->responseJSON($result, "Recipes added successfully");
      }
 }
