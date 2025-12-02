@@ -48,7 +48,7 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::post('/add_update_shopping_list_item/{id?}', [ShoppingListItemsController::class, "addOrUpdateShoppingListItem"]);
         Route::get('/expenses/{id?}', [ExpensesController::class, "getAllExpenses"]);
         Route::post('/add_update_expense/{id?}', [ExpensesController::class, "addOrUpdateExpense"]);
-        Route::post('/ai_suggestions', [AIController::class, "suggestion"]);
+        Route::post('/ai_suggestions/{id?}', [AIController::class, "suggestion"]);
     });
 });
 Route::post('/login', [AuthController::class, "login"]);

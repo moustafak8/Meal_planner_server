@@ -17,7 +17,7 @@ class AI_responseService
             return json_encode(["error" => "OpenAI API key not configured"]);
         }
 
-        $system = "You are a helpful cooking assistant. Based on the pantry items provided, suggest 3-5 practical recipes that can be made with available ingredients. Return ONLY valid JSON in this format:
+        $system = "You are a helpful cooking assistant. Based on the pantry items provided, suggest 3 practical recipes that can be made with available ingredient(s). Return ONLY valid JSON in this format:
         {
             \"recipes\": [
                 {
@@ -28,7 +28,7 @@ class AI_responseService
                 }
             ]
         }
-        Keep suggestions realistic based on the ingredients provided. If limited ingredients, suggest simple recipes. Focus on practical, everyday meals.";
+        Keep suggestions realistic based on the ingredient(s) provided. If limited ingredients, suggest simple recipes. Focus on practical, everyday meals.";
 
         $itemsList = "";
         foreach ($pantryItems as $item) {

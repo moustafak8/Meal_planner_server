@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\House_members;
 use App\Models\pantry_items;
+use App\Models\Units;
+use App\Models\Ingredient;
 use App\Services\AI_responseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class AIController extends Controller
 {
-    public function suggestion(Request $request)
+    public function suggestion(Request $request, $id = null)
     {
         try {
             $user = Auth::user();
@@ -25,14 +27,11 @@ class AIController extends Controller
             }
 
             $householdId = $houseMember->household_id;
-
-            // Get pantry items based on request
             $pantryItems = [];
-            if ($request->has('pantry_items') && $request->pantry_items !== 'all') {
-                // Specific item IDs provided
-                $itemIds = is_array($request->pantry_items) ? $request->pantry_items : explode(',', $request->pantry_items);
+            if ($id) {
+                // Specific pantry item ID provided
                 $pantryItems = pantry_items::where('household_id', $householdId)
-                    ->whereIn('id', $itemIds)
+                    ->where('id', $id)
                     ->with('unit')
                     ->get();
             } else {
@@ -57,7 +56,6 @@ class AIController extends Controller
             if (isset($decodedResponse['error'])) {
                 return $this->responseJSON(null, $decodedResponse['error'], 500);
             }
-
             return $this->responseJSON($decodedResponse, "Recipe suggestions generated successfully");
         } catch (\Exception $e) {
             Log::error('Exception in AIController@suggestion: ' . $e->getMessage());
