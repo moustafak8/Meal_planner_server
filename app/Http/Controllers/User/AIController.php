@@ -8,6 +8,7 @@ use App\Models\pantry_items;
 use App\Models\Units;
 use App\Models\Ingredient;
 use App\Services\AI_responseService;
+use App\Services\Recipe_service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -56,6 +57,7 @@ class AIController extends Controller
             if (isset($decodedResponse['error'])) {
                 return $this->responseJSON(null, $decodedResponse['error'], 500);
             }
+
             return $this->responseJSON($decodedResponse, "Recipe suggestions generated successfully");
         } catch (\Exception $e) {
             Log::error('Exception in AIController@suggestion: ' . $e->getMessage());

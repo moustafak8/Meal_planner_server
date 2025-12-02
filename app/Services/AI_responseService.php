@@ -22,13 +22,17 @@ class AI_responseService
             \"recipes\": [
                 {
                     \"name\": \"Recipe Name\",
-                    \"ingredients\": [\"ingredient1\", \"ingredient2\", ...],
+                    \"ingredients\": [
+                        {\"name\": \"ingredient1\", \"quantity\": \"1\", \"unit\": \"kg\"},
+                        {\"name\": \"ingredient2\", \"quantity\": \"2\", \"unit\": \"cups\"},
+                        ...
+                    ],
                     \"instructions\": \"Brief cooking instructions\",
                     \"tags\": \"tags of the recipe\",
                 }
             ]
         }
-        Keep suggestions realistic based on the ingredient(s) provided. If limited ingredients, suggest simple recipes. Focus on practical, everyday meals.";
+        For each ingredient, provide a realistic quantity and unit based on the recipe. Use appropriate units like kg, g, cups, tbsp, etc. Keep suggestions realistic based on the ingredient(s) provided. If limited ingredients, suggest simple recipes. Focus on practical, everyday meals.";
 
         $itemsList = "";
         foreach ($pantryItems as $item) {
