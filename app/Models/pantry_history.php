@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class pantry_history extends Model
 {
-    //
+    protected $table = 'pantry-histories';
 }

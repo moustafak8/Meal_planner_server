@@ -30,6 +30,7 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::post('/add_update_unit/{id?}', [UnitsController::class, "addOrUpdateUnit"]);
         Route::get('/pantry_items/{id?}', [PantryItemsController::class, "getAllPantryItems"]);
         Route::post('/add_update_pantry_item/{id?}', [PantryItemsController::class, "addOrUpdatePantryItem"]);
+        Route::post('/consume_pantry_item/{id}', [PantryItemsController::class, "consumePantryItem"]);
         Route::get('/pantry_history/{id?}', [PantryHistoryController::class, "getAllPantryHistory"]);
         Route::post('/add_update_pantry_history/{id?}', [PantryHistoryController::class, "addOrUpdatePantryHistory"]);
         Route::get('/meal_plans/{id?}', [MealPlansController::class, "getAllMealPlans"]);
