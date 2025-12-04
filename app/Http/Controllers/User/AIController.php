@@ -64,4 +64,6 @@ class AIController extends Controller
             return $this->responseJSON(null, "Internal server error", 500);
         }
     }
+
+   
 }
