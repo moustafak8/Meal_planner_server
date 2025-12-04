@@ -15,7 +15,7 @@ class ShoppingListItemsController extends Controller
           return $this->responseJSON($shopping_list_items);
       }
 
-      $shopping_list_item = shopping_list_items::find($id);
+      $shopping_list_item = shopping_list_items::where('shopping_list_id', $id)->get();
       return $this->responseJSON($shopping_list_item);
   }
     function addOrUpdateShoppingListItem(Request $request, $id = "add"){
@@ -29,7 +29,6 @@ class ShoppingListItemsController extends Controller
         }
 
         $shopping_list_item->shopping_list_id = $request["shopping_list_id"];
-        $shopping_list_item->ingredient_id= $request["ingredient_id"];
         $shopping_list_item->unit_id= $request["unit_id"];
         $shopping_list_item->name= $request["name"];
         $shopping_list_item->required_amount= $request["required_amount"];
@@ -37,6 +36,18 @@ class ShoppingListItemsController extends Controller
 
         if($shopping_list_item->save()){
             return $this->responseJSON($shopping_list_item);
+        }
+
+        return $this->responseJSON(null, "failure", 400);
+    }
+    function deleteShoppingListItem($id){
+        $shopping_list_item = shopping_list_items::find($id);
+        if(!$shopping_list_item){
+            return $this->responseJSON(null, "failure", 400);
+        }
+
+        if($shopping_list_item->delete()){
+            return $this->responseJSON(null, "Shopping List Item deleted successfully");
         }
 
         return $this->responseJSON(null, "failure", 400);

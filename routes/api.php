@@ -46,10 +46,12 @@ Route::group(["prefix" => "v0.1", "middleware" => "auth:api"], function () {
         Route::get('/shopping_lists/{id?}', [ShoppingListController::class, "getAllShoppingLists"]);
         Route::post('/add_update_shopping_list/{id?}', [ShoppingListController::class, "addOrUpdateShoppingList"]);
         Route::get('/shopping_list_items/{id?}', [ShoppingListItemsController::class, "getAllShoppingListItems"]);
+        Route::post('/delete_shopping_list_item/{id}', [ShoppingListItemsController::class, "deleteShoppingListItem"]);
         Route::post('/add_update_shopping_list_item/{id?}', [ShoppingListItemsController::class, "addOrUpdateShoppingListItem"]);
         Route::get('/expenses/{id?}', [ExpensesController::class, "getAllExpenses"]);
         Route::post('/add_update_expense/{id?}', [ExpensesController::class, "addOrUpdateExpense"]);
         Route::post('/ai_suggestions/{id?}', [AIController::class, "suggestion"]);
+        Route::post('/generate_shopping_list', [AIController::class, "generateShoppingList"]);
     });
 });
 Route::post('/login', [AuthController::class, "login"]);

@@ -14,8 +14,8 @@ class MealPlanEntriesController extends Controller
            return $this->responseJSON($meal_plan_entries);
        }
 
-       $meal_plan_entry = meal_plan_entries::find($id);
-       return $this->responseJSON($meal_plan_entry);
+       $meal_plan_entries = meal_plan_entries::where('meal_plan_id', $id)->get();
+       return $this->responseJSON($meal_plan_entries);
    }
      function addOrUpdateMealPlanEntry(Request $request, $id = "add"){
          if($id == "add"){
